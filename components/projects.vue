@@ -9,9 +9,14 @@
       p We are always looking for enthusiastic developers and potential users / collaborators
     hr
     div(v-for='project in projects')
-      v-card.mx-auto(max-width='400')
-        v-img.white--text(height="200px" :src="project.image")
-        v-card-title.align-end.fill-height {{project.title}}
+      v-card.padded.mx-auto.darkShadow()
+        //- v-img.projectImage.white--text(height="200px" :src="project.image")
+        img.projectImage(:src='project.image')
+        v-card-title.align-end.fill-height(style='float: right')
+          b {{project.name}}
+          br 
+          span {{project.title}}
+        hr(style='color: grey')
         v-card-text
           span(v-if='project.description' v-for='p in project.description')
             p {{p}}
@@ -19,7 +24,7 @@
             ul
             span(v-for="item in project.list")
               li {{item}}
-        hr
+      p &nbsp;
 </template>
 
 <script>
@@ -96,3 +101,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.projectImage {
+  height: 100px;
+  justify-content: center;
+}
+</style>
