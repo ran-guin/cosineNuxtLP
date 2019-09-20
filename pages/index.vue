@@ -1,25 +1,36 @@
 <template lang='pug'>
-  v-app(light)
-    div.myHeader
+  v-app(background-color='white')
+    div.myHeader()
       div.info-header.flex-row()
         div.flex-item.info-logo
           img.logo(src='~/static/logo.png' alt='logo.png' height='200px')
         div.flex-item.info-right
-          v-tabs(v-model='tab_index' slider-color='#39a')
+          v-tabs(v-model='tab_index' slider-color='#39a' active-class='pickedTab')
             v-tab(v-for='page, i in pages' :key='page.page' @click='showPage(page)') {{page.name}}
       hr(style='border: 6px solid #39a') 
-    div.myBody()
+    div.myBody.background-image
       v-container
-        div(v-if="openTab === 'mission'")
-          Mission
-        div(v-if="openTab === 'contact'")
-          Contact
-        div(v-if="openTab === 'expertise'")
-          Expertise
-        div(v-if="openTab === 'projects'")
-          Projects
-        div(v-else)
-          Home
+      
+        button(v-on:click="show = !show") Toggle
+        transition(name="fade")
+          p(v-if="show") Hello !
+        hr
+        v-tabs-items(v-model='tab_index')
+          v-tabs-item(v-for='page in pages' :key='page.page')
+            v-card(flat)
+              Hi ...on page {{tab_index}} : {{page.name}}
+        hr
+        transition(name="turnPage")
+          div(v-if="openTab === 'mission'")
+            Mission
+          div(v-if="openTab === 'contact'")
+            Contact
+          div(v-if="openTab === 'expertise'")
+            Expertise
+          div(v-if="openTab === 'projects'")
+            Projects
+          div(v-if="openTab == 'home'")
+            Home
     div.myFooter()
       PublicFooter
 </template>
@@ -43,6 +54,7 @@
     },
     data () {
       return {
+        show: true,
         tab_index: 3,
         openTab: '',
         pages: [
@@ -84,6 +96,18 @@ $footer-height: 100px;
 }
 .myBody {
   min-height: calc(100vh - #{$header-height} - #{$subheader-height} - #{$footer-height});
+background: url(/_nuxt/img/b6b028c.gif) no-repeat 50% fixed;
+}
+.background-image {
+  background: url('/images/animated_sine.gif') no-repeat center fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  z-index: -1;
 }
 .myFooter {
   height: #{$footer-height};
@@ -127,6 +151,7 @@ span a:hover {
 }
 .info-header.flex-row {
   justify-content: space-between;
+  padding-right: 2rem;
 }
 
 .flex-row {
@@ -142,4 +167,22 @@ span a:hover {
 div.v-tabs__slider.accent {
   background-color: black !important;
 }
+.pickedTab {
+  color: red;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.turnPage-enter-active, .fade-leave-active {
+  transition: opacity 2s;
+}
+.turnPage-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 </style>
