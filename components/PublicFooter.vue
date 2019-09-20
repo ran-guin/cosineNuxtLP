@@ -46,6 +46,7 @@ export default {
 <style scoped>
 .publicFooter.flex-row {
   justify-content: space-between;
+  height: 100%;
 }
 
 ul {
