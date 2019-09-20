@@ -4,9 +4,9 @@
       div.info-header.flex-row()
         div.flex-item.info-logo
           img.logo(src='~/static/logo.png' alt='logo.png' height='200px')
-        div.flex-item.info-right
-          v-tabs(v-model='tab_index' slider-color='#39a' color='#39a' active-class='pickedTab')
-            v-tab(v-for='page, i in pages' :key='page.page' @click='showPage(page)') {{page.name}}
+        div.flex-item.wideRight
+          v-tabs(v-model='tab_index' slider-color='#39a' active-class='pickedTab')
+            v-tab(v-for='page, i in pages' :key='page.page' @click='showPage(page)' class='teal--text') {{page.name}}
       hr(style='border: 6px solid #39a') 
     div.myBody
       div
@@ -206,9 +206,10 @@ div.v-tabs__slider.accent {
   margin: 2rem;
 }
 
-@media screen and (min-width: 1024px) {
-  .v-card.padded {
-    max-width: 500px;
+/* wideRight will float to the right IF there is space ...
+@media screen and (min-width: 768px) {
+  .wideRight {
+    float: right
   }
 }
 </style>
