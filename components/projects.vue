@@ -12,11 +12,11 @@
       v-card.padded.mx-auto.darkShadow()
         //- v-img.projectImage.white--text(height="200px" :src="project.image")
         img.projectImage(:src='project.image')
-        v-card-title.align-end.fill-height(style='float: right')
+        div.wideRight(style='float: right')
           b {{project.name}}
           br 
           span {{project.title}}
-        hr(style='color: grey')
+        hr(style='color: grey; width: 100%')
         v-card-text
           span(v-if='project.description' v-for='p in project.description')
             p {{p}}
@@ -108,4 +108,5 @@ export default {
   height: 100px;
   justify-content: center;
 }
+
 </style>
