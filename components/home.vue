@@ -1,6 +1,6 @@
 <template lang='pug'>
   v-container
-    h1 Cosine Systems
+    h1.primary-colour Cosine Systems
     hr
     p &nbsp;
     div

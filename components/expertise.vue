@@ -1,6 +1,6 @@
 <template lang='pug'>
   v-container
-    h1 Skills & Expertise
+    h1.primary-colour Skills & Expertise
     hr
     p &nbsp;
     div

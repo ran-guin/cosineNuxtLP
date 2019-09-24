@@ -1,6 +1,6 @@
 <template lang='pug'>
   div.container
-    h1 Current Projects
+    h1.primary-colour Current Projects
     hr
     div.text-lg
       p

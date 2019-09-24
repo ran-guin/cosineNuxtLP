@@ -1,6 +1,6 @@
 <template lang='pug'>
   v-container
-    h1 Mission
+    h1.primary-colour Mission
     hr
     p &nbsp;
     div

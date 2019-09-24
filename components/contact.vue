@@ -1,6 +1,6 @@
 <template lang='pug'>
   v-container
-    h1 Contact Information
+    h1.primary-colour Contact Information
     hr
     p &nbsp;
     div
