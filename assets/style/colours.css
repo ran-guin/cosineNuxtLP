@@ -1,4 +1,10 @@
 /*! Source: assets/colours.css  */
+.primary-colour {
+  color: #39a;
+}
+.primary-background {
+  background-color: #39a;
+}
 .visible-tab {
   background-color: transparent;
 }
