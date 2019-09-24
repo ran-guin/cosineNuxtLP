@@ -7,25 +7,25 @@
         div.flex-item.wideRight
           v-tabs(v-model='tab_index' slider-color='#39a' active-class='pickedTab')
             v-tab(v-for='page, i in pages' :key='page.name' @click='showPage(page)' class='teal--text')
-              v-icon.primary-colour(v-if='page.icon') {{page.icon}}
+              v-icon(v-if='page.icon' :color='page.colour') {{page.icon}}
               span(v-else) {{page.name}}
       hr(style='border: 6px solid #39a') 
     div.background-image
     div.myBody
         v-container
-          div.offPage#Mission(ref='Mission')
+          div.offThisPage#Mission(ref='Mission')
             div(v-if="openTab === 'Mission'")
               Mission.list-item
-          div.offPage#Contact(ref = 'Contact')
+          div.offThisPage#Contact(ref = 'Contact')
             div(v-if="openTab === 'Contact'")
                 Contact.list-item
-          div.offPage#Expertise(ref='Expertise')
+          div.offThisPage#Expertise(ref='Expertise')
             div(v-if="openTab === 'Expertise'")
               Expertise.list-item
-          div.offPage#Projects(ref='Projects')
+          div.offThisPage#Projects(ref='Projects')
             div(v-if="openTab === 'Projects'")
                 Projects.list-item
-          div.offPage#Home(ref='Home')
+          div.offThisPage#Home(ref='Home')
             div(v-if="openTab == 'Home'")
                 Home.list-item
     div.myFooter()
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import Home from '~/components/Home'
+  import Home from '~/components/home'
   import Contact from '~/components/contact'
   import Expertise from '~/components/expertise'
   import Projects from '~/components/projects'
@@ -55,7 +55,7 @@
         tab_index: 0,
         openTab: '',
         pages: [
-          { name: 'Home', icon: 'home' },
+          { name: 'Home', icon: 'home', colour: '#39a' },
           { name: 'Mission' },
           { name: 'Expertise' },
           { name: 'Projects' },
@@ -72,8 +72,8 @@
       var start = this.pages[this.tab_index].name
       var init = this.$refs[start]
       if (init) {
-        init.classList.toggle('onPage')
-        init.classList.toggle('offPage')
+        init.classList.toggle('onThisPage')
+        init.classList.toggle('offThisPage')
       }
     },
     methods: {
@@ -87,13 +87,13 @@
         this.openTab = page.name || 'Home'
 
         if (open) {
-          open.classList.toggle('onPage')
-          open.classList.toggle('offPage')
+          open.classList.toggle('onThisPage')
+          open.classList.toggle('offThisPage')
           console.log('Opened: ' + page.name + ': ' + JSON.stringify(open.classList))
         }
         if (close) {
-          close.classList.toggle('onPage')
-          close.classList.toggle('offPage')
+          close.classList.toggle('onThisPage')
+          close.classList.toggle('offThisPage')
           console.log('Closed: ' + JSON.stringify(close.classList))
         }
       }
@@ -242,12 +242,12 @@ div.v-tabs__slider.accent {
   }
 }
 
-.offPage {
+.offThisPage {
   // transition-duration: 2s;
   // transition: all 2s;
   opacity: 0.1;
 }
-.onPage {
+.onThisPage {
   transition-duration: 2s;
   transition: all 2s;
   opacity: 1;
