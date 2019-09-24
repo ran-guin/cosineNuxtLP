@@ -1,14 +1,16 @@
 <template lang='pug'>
-  div.container
+  v-container
     h1 Skills & Expertise
     hr
+    p &nbsp;
     div
       div(v-for="skill in skills")
-        v-card.padded.mx-auto.darkShadow
+        v-card.padded.mx-auto.darkShadow(style='max-width: 700')
           h2
             center
-              v-icon {{skill.icon}}
-              span &nbsp; &nbsp; {{skill.name}}
+              v-icon(large) {{skill.icon}}
+              span(v-if='skill.icon') &nbsp; &nbsp;
+              span {{skill.name}}
           br
           div.block.text-lg(v-if='skill.description') {{skill.description}}
           div.listBlock
@@ -16,6 +18,7 @@
               ul
               span(v-for="item in skill.list")
                 li {{item}}
+                br
     div.wide-item &nbsp;
       hr
       div.flex-container
@@ -31,19 +34,19 @@ export default {
     return {
       skills: [
         {
-          icon: 'desktop-classic',
+          icon: 'language',
           name: 'Web Sites',
           description:
             'We can develop customized single-page or multi-page web sites that effectively communicate who you are and what you have to offer'
         },
         {
-          icon: 'earth',
+          icon: 'desktop_mac',
           name: 'Web Applications',
           description:
             'We can also develop more comprehensive web applications with personalized user login features, a database backend, and customized data handling and visualization'
         },
         {
-          icon: 'database-export',
+          icon: 'mdi-database-export',
           name: 'Data Management',
           list: [
             'Database Design',
@@ -55,7 +58,7 @@ export default {
           ]
         },
         {
-          icon: 'signal-cellular-3',
+          icon: 'mdi-signal-cellular-3',
           name: 'Data Visualization',
           description: 'Generating simple ways to visualize data effectively',
           list: [

@@ -1,15 +1,13 @@
 <template lang='pug'>
   div.container
-    p &nbsp;
     h1 Current Projects
     hr
     div.text-lg
       p
         b If any of these projects is of interest to you, please feel free to contact us to get involved.
       p We are always looking for enthusiastic developers and potential users / collaborators
-    hr
     div(v-for='project in projects')
-      v-card.padded.mx-auto.darkShadow()
+      v-card.padded.darkShadow
         //- v-img.projectImage.white--text(height="200px" :src="project.image")
         img.projectImage(:src='project.image')
         div.wideRight(style='float: right')

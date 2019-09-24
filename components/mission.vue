@@ -1,12 +1,23 @@
 <template lang='pug'>
-  div.container
-    h3 Mission
-      p.text-lg We are a group of software developers and engineers dedicated to the creative design & implementation of free or low cost web applications for community benefit and public service.
-      div.col-md-6(v-for="m in mission")
-        h2 {{m.name}}
-        p.text-lg
-          ul
-            li(v-for="item in m.list") {{item}}
+  v-container
+    h1 Mission
+    hr
+    p &nbsp;
+    div
+      v-card.darkShadow
+        v-container
+          v-card-text
+            p.text-lg We are a group of software developers and engineers dedicated to the creative design & implementation of free or low cost web applications for community benefit and public service.
+          v-card.mx-auto
+            v-card-text(v-for="m in mission" :key='m.name')
+              h3 {{m.name}}
+              ul
+                li.vertical-list-item(v-for="item in m.list" :key='item') {{item}}
+                  br
+              //- v-list
+              //-   v-list-item(v-for="item in m.list" :key='item')
+              //-       v-list-item-content(style='width:100%') {{item}}
+              //-       br
 </template>
 
 <script>
@@ -41,3 +52,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+li.vertical-list-item {
+  display: block;
+}
+</style>
