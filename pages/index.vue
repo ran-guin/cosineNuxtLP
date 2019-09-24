@@ -6,22 +6,28 @@
           img.logo(src='~/static/logo.png' alt='logo.png' height='200px')
         div.flex-item.wideRight
           v-tabs(v-model='tab_index' slider-color='#39a' active-class='pickedTab')
-            v-tab(v-for='page, i in pages' :key='page.page' @click='showPage(page)' class='teal--text') {{page.name}}
+            v-tab(v-for='page, i in pages' :key='page.name' @click='showPage(page)' class='teal--text')
+              v-icon.primary-colour(v-if='page.icon') {{page.icon}}
+              span(v-else) {{page.name}}
       hr(style='border: 6px solid #39a') 
+    div.background-image
     div.myBody
-      div
         v-container
-          div
+          div.offPage#Mission(ref='Mission')
             div(v-if="openTab === 'Mission'")
               Mission.list-item
+          div.offPage#Contact(ref = 'Contact')
             div(v-if="openTab === 'Contact'")
-              Contact.list-item
+                Contact.list-item
+          div.offPage#Expertise(ref='Expertise')
             div(v-if="openTab === 'Expertise'")
               Expertise.list-item
+          div.offPage#Projects(ref='Projects')
             div(v-if="openTab === 'Projects'")
-              Projects.list-item
+                Projects.list-item
+          div.offPage#Home(ref='Home')
             div(v-if="openTab == 'Home'")
-              Home.list-item
+                Home.list-item
     div.myFooter()
       PublicFooter
 </template>
@@ -46,28 +52,49 @@
     data () {
       return {
         show: true,
-        tab_index: 3,
+        tab_index: 0,
         openTab: '',
         pages: [
-          { name: 'About', page: 'mission' },
-          { name: 'Expertise', page: 'expertise' },
-          { name: 'Projects', page: 'projects' },
-          { name: 'Contact', page: 'contact' }
+          { name: 'Home', icon: 'home' },
+          { name: 'Mission' },
+          { name: 'Expertise' },
+          { name: 'Projects' },
+          { name: 'Contact' }
         ]
       }
     },
     created: function () {
-      if (this.tab_index) {
-        this.openTab = this.pages[this.tab_index].name
+      this.openTab = this.pages[this.tab_index].name
+      console.log('created...' + this.openTab)
+    },
+    mounted: function () {
+      console.log('mounted...' + this.openTab)
+      var start = this.pages[this.tab_index].name
+      var init = this.$refs[start]
+      if (init) {
+        init.classList.toggle('onPage')
+        init.classList.toggle('offPage')
       }
     },
     methods: {
       showPage: function (page) {
-        console.log('** Show Page: ' + JSON.stringify(page))
-        if (page && page.page) {
-          this.openTab = page.name
-        } else {
-          this.openTab = 'Home'
+        console.log('from page ' + page)
+
+        console.log('open tab: ' + this.openTab)
+        var open = this.$refs[page.name]
+        var close = this.$refs[this.openTab]
+
+        this.openTab = page.name || 'Home'
+
+        if (open) {
+          open.classList.toggle('onPage')
+          open.classList.toggle('offPage')
+          console.log('Opened: ' + page.name + ': ' + JSON.stringify(open.classList))
+        }
+        if (close) {
+          close.classList.toggle('onPage')
+          close.classList.toggle('offPage')
+          console.log('Closed: ' + JSON.stringify(close.classList))
         }
       }
     }
@@ -84,13 +111,13 @@ $footer-height: 100px;
 .myHeader {
   height: #{$header-height};
   background-color: white;
+  z-index: 10;
 }
 .myBody {
   min-height: calc(100vh - #{$header-height} - #{$subheader-height} - #{$footer-height});
-background: url(/_nuxt/img/b6b028c.gif) no-repeat 50% fixed;
 }
 .background-image {
-  background: url('/images/animated_sine.gif') no-repeat center fixed;
+  background: url("/images/animated_sine.gif") no-repeat bottom center fixed;
   position: absolute;
   top: 0;
   left: 0;
@@ -98,7 +125,7 @@ background: url(/_nuxt/img/b6b028c.gif) no-repeat 50% fixed;
   height: 100%;
   width: 100%;
   opacity: 0.1;
-  z-index: -1;
+  z-index: 0;
 }
 .myFooter {
   height: #{$footer-height};
@@ -169,6 +196,7 @@ div.v-tabs__slider.accent {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
 .list-item {
   display: inline-block;
   margin-right: 10px;
@@ -180,6 +208,7 @@ div.v-tabs__slider.accent {
   opacity: 0;
   transform: translateY(100px);
 }
+
 .turnpage-enter-active, .fade-leave-active {
   transition: opacity 2s;
 }
@@ -206,10 +235,21 @@ div.v-tabs__slider.accent {
   margin: 2rem;
 }
 
-/* wideRight will float to the right IF there is space ...
+/* wideRight will float to the right IF there is space ... */
 @media screen and (min-width: 768px) {
   .wideRight {
-    float: right
+    float: right;
   }
+}
+
+.offPage {
+  // transition-duration: 2s;
+  // transition: all 2s;
+  opacity: 0.1;
+}
+.onPage {
+  transition-duration: 2s;
+  transition: all 2s;
+  opacity: 1;
 }
 </style>
