@@ -7,7 +7,7 @@
       v-card.darkShadow
         v-container
           v-card-text
-            h2 Email: info@cosinesystems.org
+            h2 Email: rguin@cosinesystems.org
             h2 Phone: 604-731-1124
             div.input-lg
               p &nbsp;

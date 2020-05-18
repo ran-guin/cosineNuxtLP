@@ -16,7 +16,7 @@
           span &nbsp; &nbsp;
           span &nbsp; &nbsp;
     div.footer-right(light)
-      a(href="mailto:info@cosinesystems.org?Subject=webpage%20contact") Contact Us
+      a(href="mailto:rguin@cosinesystems.org?Subject=webpage%20contact") Contact Us
 
 </template>
 
