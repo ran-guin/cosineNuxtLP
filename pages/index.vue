@@ -117,7 +117,7 @@ $footer-height: 100px;
   min-height: calc(100vh - #{$header-height} - #{$subheader-height} - #{$footer-height});
 }
 .background-image {
-  background: url("/images/animated_sine.gif") no-repeat bottom center fixed;
+  /* background: url("/images/animated_sine.gif") no-repeat bottom center fixed; */
   position: absolute;
   top: 0;
   left: 0;
